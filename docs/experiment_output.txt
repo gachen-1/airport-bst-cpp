@@ -1,0 +1,14 @@
+> load data/airports.dat
+Loaded 6072 airports (1626 lines skipped: no IATA code). Duplicates: 0
+Height: 177  Average depth: 18.3
+Lines: 7698  Countries: 235  United States: 1251  Inorder sorted: yes
+> experiment
+Task 6: shape experiment on 6072 codes, 10000 random successful searches (time: best of 5 runs)
+
+Build order                   Height  Average depth       Time (ms)   Avg comparisons
+-------------------------------------------------------------------------------------
+File order                       177           18.3           2.161              19.3
+Sorted order                    6071         3035.5         136.582            3043.9
+Balanced (middle rule)            12           10.7           1.718              11.7
+Random shuffle (seed 2026)        27           14.2           1.976              15.2
+> quit

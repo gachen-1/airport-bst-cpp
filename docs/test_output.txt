@@ -1,0 +1,133 @@
+> load data/airports.dat
+Loaded 6072 airports (1626 lines skipped: no IATA code). Duplicates: 0
+Height: 177  Average depth: 18.3
+Lines: 7698  Countries: 235  United States: 1251  Inorder sorted: yes
+> test
+=== Task 1: load and build (file order) ===
+  [PASS] 6072 airports loaded
+  [PASS] 0 duplicates
+  [PASS] 235 countries, 1251 in the United States
+  [PASS] height 177
+  [PASS] validate after every one of the 6072 inserts
+  [PASS] inorder list is sorted
+
+=== Task 2: every search case ===
+find GKA (root)
+  Path: GKA (comparisons: 1)
+  [PASS] root is found
+find AAC (leaf)
+  Path: GKA -> AEY -> AAE -> AAA -> AAC (comparisons: 5)
+  [PASS] leaf is found
+find YZR (deepest node)
+  Path: GKA -> MAG -> POM -> WWK -> YAM -> YAY -> YAZ -> YBB -> YBC -> YBG -> YBK -> YBL -> YBR -> YCB -> YCD -> YCG -> YCH -> YCL -> YCO -> YCT -> YCW -> YCY -> YZS -> YDA -> YDB -> YDF -> YDL -> YDN -> YDQ -> YEG -> YEK -> YEN -> YET -> YEU -> YEV -> YFB -> YFC -> YFE -> YFO -> YFR -> YFS -> YGK -> YGL -> YGP -> YGQ -> YGR -> YHB -> YHD -> YHI -> YHK -> YHM -> YHU -> YHY -> YHZ -> YIB -> YIO -> YJN -> YJT -> YKA -> YKF -> YKL -> YKY -> YKZ -> YLD -> YLJ -> YLL -> YLT -> YLW -> YMA -> YMJ -> YMM -> YMO -> YMW -> YMX -> YNA -> YND -> YNM -> YOC -> YOD -> YOJ -> YOW -> YPA -> YPE -> YPG -> YPL -> YPN -> YPQ -> YPR -> YPY -> YQA -> YQB -> YQF -> YQG -> YQH -> YQK -> YQL -> YQM -> YQQ -> YQR -> YQT -> YQU -> YQV -> YQW -> YQX -> YQY -> YQZ -> YRB -> YRI -> YRJ -> YRM -> YRT -> YSB -> YSC -> YSJ -> YSM -> YSR -> YSU -> YSY -> YTE -> YTH -> YTR -> YTS -> YTZ -> YUB -> YUL -> YUT -> YUX -> YUY -> YVC -> YVG -> YVM -> YVO -> YVP -> YVQ -> YVR -> YVT -> YVV -> YWA -> YWG -> YWK -> YWL -> YWY -> YXC -> YXD -> YXE -> YXH -> YXJ -> YXL -> YXP -> YXR -> YXS -> YXT -> YXU -> YXX -> YXY -> YYB -> YYC -> YYD -> YYE -> YYF -> YYG -> YYH -> YYJ -> YYL -> YYN -> YYQ -> YYR -> YYT -> YYU -> YYW -> YYY -> YYZ -> YZD -> YZE -> YZF -> YZH -> YZP -> YZR (comparisons: 178)
+  [PASS] deepest node is found
+find XYZ (not in the tree)
+  Path: GKA -> MAG -> POM -> WWK -> YAM -> XFW -> XGN -> XLS -> XRY -> XVS -> YAI -> YAA -> XYA -> XYE -> (NULL) not found (comparisons: 14)
+  [PASS] not in the tree is not found
+find 000 (smaller than every key)
+  Path: GKA -> AEY -> AAE -> AAA -> (NULL) not found (comparisons: 4)
+  [PASS] smaller than every key is not found
+find ZZZ (larger than every key)
+  Path: GKA -> MAG -> POM -> WWK -> YAM -> YAY -> YAZ -> YBB -> YBC -> YBG -> YBK -> YBL -> YBR -> YCB -> YCD -> YCG -> YCH -> YCL -> YCO -> YCT -> YCW -> YCY -> YZS -> YZT -> YZU -> YZV -> YZW -> YZX -> ZFA -> ZFM -> ZND -> ZQW -> ZSE -> ZVA -> ZWA -> ZZU -> ZZV -> (NULL) not found (comparisons: 37)
+  [PASS] larger than every key is not found
+Minimum: AAA  Anaa Airport, Anaa, French Polynesia
+Maximum: ZZV  Zanesville Municipal Airport, Zanesville, United States
+
+=== Task 3: every delete case (each starts from the original tree) ===
+remove AAC  [D1 leaf]
+  Before:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  Deleted AAC (case D1: leaf)
+  After:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  [PASS] D1 leaf: removed, size - 1, validate OK, inorder sorted
+remove GJT  [D2 only a left child]
+  Before:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  Deleted GJT (case D2: only a left child, GJR)
+  After:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  [PASS] D2 only a left child: removed, size - 1, validate OK, inorder sorted
+remove AAA  [D2 only a right child]
+  Before:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  Deleted AAA (case D2: only a right child, AAC)
+  After:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  [PASS] D2 only a right child: removed, size - 1, validate OK, inorder sorted
+remove AEY  [D3 two children]
+  Before:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  Deleted AEY (case D3: two children; successor AFA copied in, successor removed with D2)
+  After:
+    Level 0: GKA
+    Level 1: AFA MAG
+    Level 2: AAE EGS HGU POM
+  [PASS] D3 two children: removed, size - 1, validate OK, inorder sorted
+remove GKA  [root (two children, D3 + B6)]
+  Before:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  Deleted GKA (case D3: two children, the root; successor GKE copied in, successor removed with D2)
+  After:
+    Level 0: GKE
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  [PASS] root (two children, D3 + B6): removed, size - 1, validate OK, inorder sorted
+remove BOS  [sample session: BOS]
+  Before:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  Deleted BOS (case D2: only a left child, BOR)
+  After:
+    Level 0: GKA
+    Level 1: AEY MAG
+    Level 2: AAE EGS HGU POM
+  [PASS] sample session: BOS: removed, size - 1, validate OK, inorder sorted
+remove XYZ  [not in the tree]
+  XYZ is not in the tree (S1): nothing deleted
+  [PASS] S1: removing a missing code changes nothing
+
+=== Task 3(c): add a made-up airport ===
+add QQQ: QQQ  Jiachen Hou International Airport, Boston, United States  validate: OK
+Path: GKA -> MAG -> POM -> WWK -> UAK -> SFJ -> RKV -> QLD -> REB -> QXH -> QLF -> QUY -> QNJ -> QPA -> QRO -> QPD -> QPS -> QRC -> QRA -> QPW -> QQT -> QQQ (comparisons: 22)
+QQQ  Jiachen Hou International Airport, Boston, United States
+Deleted QQQ (case D1: leaf)  validate: OK
+  [PASS] QQQ added, found, then removed
+
+=== Task 4: traversals and validation ===
+  [PASS] list (inorder) is sorted
+Saved 6072 codes in preorder to preorder_test.txt
+  original: height 177, reloaded: height 177
+  [PASS] reloaded tree has the same height and level order
+  [PASS] validate (range method) on the reloaded tree
+
+=== Task 5: range query ===
+range BOS BWI: 113 airports, 127 nodes visited
+  [PASS] range BOS BWI returns 113 airports
+  [PASS] same count as a full inorder scan
+  [PASS] visits far fewer nodes than the whole tree
+
+=== Task 6: rebalance ===
+Height: 12  Average depth: 10.7
+  [PASS] balanced height 12
+  [PASS] validate after rebalance
+
+Tests passed: 28, failed: 0
+> quit

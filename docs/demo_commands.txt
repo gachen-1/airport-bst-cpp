@@ -1,0 +1,23 @@
+load data/airports.dat
+find BOS
+find XYZ
+min
+range BOS BWI -q
+range BOS BRO
+levels 3
+remove AEY
+validate
+remove BOS
+add QQQ
+Jiachen Hou International Airport
+Boston
+United States
+find QQQ
+remove QQQ
+list 10
+save data/preorder_codes.txt
+load data/preorder_codes.txt
+levels 3
+rebalance
+validate
+quit

@@ -1,0 +1,102 @@
+> load data/airports.dat
+Loaded 6072 airports (1626 lines skipped: no IATA code). Duplicates: 0
+Height: 177  Average depth: 18.3
+Lines: 7698  Countries: 235  United States: 1251  Inorder sorted: yes
+> find BOS
+Path: GKA -> AEY -> EGS -> BUJ -> BJA -> BSK -> BOY -> BNI -> BOH -> BOO -> BOU -> BOS (comparisons: 12)
+BOS  General Edward Lawrence Logan International Airport, Boston, United States
+> find XYZ
+Path: GKA -> MAG -> POM -> WWK -> YAM -> XFW -> XGN -> XLS -> XRY -> XVS -> YAI -> YAA -> XYA -> XYE -> (NULL) not found (comparisons: 14)
+> min
+Minimum: AAA  Anaa Airport, Anaa, French Polynesia
+Maximum: ZZV  Zanesville Municipal Airport, Zanesville, United States
+> range BOS BWI -q
+113 airports, 127 nodes visited
+> range BOS BRO
+BOS  General Edward Lawrence Logan International Airport, Boston, United States
+BOU  Bourges Airport, Bourges, France
+BOW  Bartow Municipal Airport, Bartow, United States
+BOX  Borroloola Airport, Borroloola, Australia
+BOY  Bobo Dioulasso Airport, Bobo-dioulasso, Burkina Faso
+BPC  Bamenda Airport, Bamenda, Cameroon
+BPE  Qinhuangdao Beidaihe Airport, Bagan, Burma
+BPF  Batuna Aerodrome, Batuna, Solomon Islands
+BPG  Barra do Garças Airport, Barra Do Garcas, Brazil
+BPH  Bislig Airport, , Philippines
+BPI  Miley Memorial Field, Big Piney, United States
+BPL  Alashankou Bole (Bortala) airport, Bole, China
+BPM  Begumpet Airport, Hyderabad, India
+BPN  Sultan Aji Muhamad Sulaiman Airport, Balikpapan, Indonesia
+BPS  Porto Seguro Airport, Porto Seguro, Brazil
+BPT  Southeast Texas Regional Airport, Beaumont, United States
+BPX  Qamdo Bangda Airport, Bangda, China
+BPY  Besalampy Airport, Besalampy, Madagascar
+BQA  Dr.Juan C. Angara Airport, Baler, Philippines
+BQB  Busselton Regional Airport, Brusselton, Australia
+BQE  Bubaque Airport, Bubaque, Guinea-Bissau
+BQG  Bogorodskoye Airport, Bogorodskoe, Russia
+BQH  London Biggin Hill Airport, Biggin Hill, United Kingdom
+BQJ  Batagay Airport, Batagay, Russia
+BQK  Brunswick Golden Isles Airport, Brunswick, United States
+BQL  Boulia Airport, Boulia, Australia
+BQN  Rafael Hernandez Airport, Aguadilla, Puerto Rico
+BQS  Ignatyevo Airport, Blagoveschensk, Russia
+BQT  Brest Airport, Brest, Belarus
+BQU  J F Mitchell Airport, Bequia, Saint Vincent and the Grenadines
+BRA  Barreiras Airport, Barreiras, Brazil
+BRC  San Carlos De Bariloche Airport, San Carlos De Bariloche, Argentina
+BRD  Brainerd Lakes Regional Airport, Brainerd, United States
+BRE  Bremen Airport, Bremen, Germany
+BRI  Bari Karol Wojtyła Airport, Bari, Italy
+BRK  Bourke Airport, Bourke, Australia
+BRL  Southeast Iowa Regional Airport, Burlington, United States
+BRM  Barquisimeto International Airport, Barquisimeto, Venezuela
+BRN  Bern Belp Airport, Bern, Switzerland
+BRO  Brownsville South Padre Island International Airport, Brownsville, United States
+40 airports, 52 nodes visited
+> levels 3
+Level 0: GKA
+Level 1: AEY MAG
+Level 2: AAE EGS HGU POM
+> remove AEY
+Deleted AEY (case D3: two children; successor AFA copied in, successor removed with D2)  validate: OK
+> validate
+validate: OK
+> remove BOS
+Deleted BOS (case D2: only a left child, BOR)  validate: OK
+> add QQQ
+  Name: Jiachen Hou International Airport
+  City: Boston
+  Country: United States
+Added QQQ  Jiachen Hou International Airport, Boston, United States  validate: OK
+> find QQQ
+Path: GKA -> MAG -> POM -> WWK -> UAK -> SFJ -> RKV -> QLD -> REB -> QXH -> QLF -> QUY -> QNJ -> QPA -> QRO -> QPD -> QPS -> QRC -> QRA -> QPW -> QQT -> QQQ (comparisons: 22)
+QQQ  Jiachen Hou International Airport, Boston, United States
+> remove QQQ
+Deleted QQQ (case D1: leaf)  validate: OK
+> list 10
+AAA  Anaa Airport, Anaa, French Polynesia
+AAC  El Arish International Airport, El Arish, Egypt
+AAE  Rabah Bitat Airport, Annaba, Algeria
+AAF  Apalachicola Regional Airport, Apalachicola, United States
+AAH  Aachen-Merzbrück Airport, Aachen, Germany
+AAK  Buariki Airport, Buariki, Kiribati
+AAL  Aalborg Airport, Aalborg, Denmark
+AAM  Malamala Airport, Malamala, South Africa
+AAN  Al Ain International Airport, Al Ain, United Arab Emirates
+AAO  Anaco Airport, Anaco, Venezuela
+Listed 10 of 6070 airports. Inorder is sorted: yes
+> save data/preorder_codes.txt
+Saved 6070 codes in preorder to data/preorder_codes.txt
+> load data/preorder_codes.txt
+Rebuilt tree from data/preorder_codes.txt: 6070 codes inserted in preorder (unknown codes: 0, duplicates: 0)
+Height: 177  Average depth: 18.3
+> levels 3
+Level 0: GKA
+Level 1: AFA MAG
+Level 2: AAE EGS HGU POM
+> rebalance
+Height: 12  Average depth: 10.7
+> validate
+validate: OK
+> quit
